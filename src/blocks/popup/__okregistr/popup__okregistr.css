@@ -1,0 +1,11 @@
+.popup__okregistr{
+  background: url(../../../images/okrRegistr.svg);
+ border: none;
+  width: 120px;
+  height: 120px;
+  border-radius: 50;
+  box-sizing: border-box;
+  margin-top: 16px;
+  margin-bottom: 40px;
+  transform: translate(100%);
+}

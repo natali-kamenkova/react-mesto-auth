@@ -1,0 +1,17 @@
+.header__enter{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+    text-align: right;
+    color: #A9A9A9;
+    margin-left: 24px;
+    border: none;
+    background: transparent;
+}
+
+.header__enter:hover{
+opacity: 0.6;
+cursor: pointer;
+}
