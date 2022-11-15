@@ -30,9 +30,9 @@ function Login({isLoggedIn, onLogin }) {
   }
 
   return (
-    <div onSubmit={handleSubmit} className='login__container '>
+    <div  className='login__container '>
       <p className='login__title'>Вход</p>
-      <form className='popup__form login__form'>
+      <form onSubmit={handleSubmit} className='popup__form login__form'>
         <input
           id='useremail'
           name='email'

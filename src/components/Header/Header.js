@@ -14,44 +14,29 @@ function Header(props) {
         alt="Логотип"
       />
       <div className='header__links'>
-      <Switch>
-      <Route exact path='/sign-in'>
-        <Link to="/sign-up" className='header__link-singup'>Регистрация</Link>
-      </Route>
-      <Route exact path='/sign-up'>
-      <Link to="/sign-in" className='header__link-singup'>Войти</Link>
-      </Route>
-      <Route exact path='/'>
-       <div>
-       <Link to="/email" className='header__link-singup'>{props.email}</Link>
-        <button className="header__enter" onClick={props.onLogout}>Выйти</button>
-       </div>
-      </Route>
+        <Switch>
+          <Route exact path='/sign-in'>
+            <Link to="/sign-up" className='header__link-singup'>Регистрация</Link>
+          </Route>
+          <Route exact path='/sign-up'>
+            <Link to="/sign-in" className='header__link-singup'>Войти</Link>
+          </Route>
+          <Route exact path='/'>
+            <div>
+              <Link to="/email" className='header__link-singup'>{props.email}</Link>
+              <button className="header__enter" onClick={props.onLogout}>Выйти</button>
+            </div>
+          </Route>
 
-      </Switch>
-       
+        </Switch>
+
 
       </div>
     </header>
 
   )
-   
-  }
+
+}
 export default Header;
 
-/*
-<header className="header">
-      <img
-        className="header__logo"
-        src={logo}
-        alt="Логотип"
-      />
-      <ul className='header__links'>
-       {loggedIn? <li><Link to='email' className="header__link-singup">email</Link><button  className="header__enter" onClick={onLogout}>
-      Выйти
-      </button></li> :<li><Link to='sign-up' className="header__link-singup">Регистрация</Link></li>}
-      </ul>
-    </header>
-  );
-  */
 

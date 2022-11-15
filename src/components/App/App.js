@@ -29,20 +29,18 @@ function App() {
   const [cards, setCards] = useState([]);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [userData, setUserData] = useState({});
-  const [registr, setRegistr] =  React.useState(false);
-  
+  const [registr, setRegistr] = React.useState(false);
+
 
 
   const tokenCheck = useCallback(async (data) => {
     try {
-      //let jwt = localStorage.getItem('jwt');
-      data.token && localStorage.setItem('jwt', data.token);
-      let jwt = localStorage.getItem('jwt');
+      const jwt = localStorage.getItem('jwt');
       if (!jwt) {
         throw new Error('no token')
       }
       const user = await auth.checkToken(jwt);
-      
+
 
       if (!user) {
         throw new Error('invalid user');
@@ -50,7 +48,7 @@ function App() {
       if (user) {
         setLoggedIn(true);
         setUserData(user.data);
-        
+
       }
     } catch {
 
@@ -62,14 +60,14 @@ function App() {
   const callBackLogin = useCallback(async (email, password) => {
     try {
       const data = await auth.authorize(email, password);
+      data.token && localStorage.setItem('jwt', data.token);
       if (!data) {
         throw new Error('Неверный майл или пароль')
       }
-      if (data.token) {
-      //  callBackAuthenticate(data)
-           
-          tokenCheck(data)
-      }
+
+      tokenCheck(data)
+      const userData = { email, password }
+      console.log(userData)
       return data;
 
     } catch {
@@ -85,17 +83,16 @@ function App() {
   const callBackRegistr = useCallback(async (email, password) => {
     try {
       const data = await auth.register(email, password)
-      setIsInfoTooltipOpen(true)
+      // setIsInfoTooltipOpen(true)
       setRegistr(true)
       setTimeout(() => {
         callBackLogin(email, password)
-      }, 300)
+      }, 100)
 
-      console.log(data)
       return data;
     } catch {
-      
-    } finally { };
+
+    } finally { setIsInfoTooltipOpen(true) };
   }, [])
 
   const callBackLogout = useCallback(() => {
@@ -103,25 +100,7 @@ function App() {
     localStorage.removeItem('jwt');
     setUserData({})
   }, [])
-  /*
-    const tokenCheck = useCallback(()=>{
-      let jwt = localStorage.getItem('jwt');
-     
-       auth.checkToken(jwt)
-       .then((data)=>{
-        const user={
-          jwt: data.jwt,
-          email: data.email
-        }
-        setLoggedIn(true);
-        setUserData(user);
-       })
-       .catch(()=>{
-        console.log('error')
-       })
-  
-    }, [])
-    */
+
   useEffect(() => {
     tokenCheck()
 
@@ -198,6 +177,23 @@ function App() {
     setSelectedCard(null);
     setIsInfoTooltipOpen(false)
   }
+
+  // обработчик закрытия попапов Esc
+  const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard || isInfoTooltipOpen
+  useEffect(() => {
+    function closeByEscape(evt) {
+      if (evt.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+    if (isOpen) { // навешиваем только при открытии
+      document.addEventListener('keydown', closeByEscape);
+      return () => {
+        document.removeEventListener('keydown', closeByEscape);
+      }
+    }
+  }, [isOpen])
+
   //обработчик обновления профайла
   function handleUpdateUser(data) {
     api.editProfile(data)
@@ -209,7 +205,7 @@ function App() {
       .catch(function (err) {
         console.log('Ошибка', err)
       })
-     console.log(data)
+    console.log(data)
 
 
   }
@@ -247,7 +243,7 @@ function App() {
         <div className="page">
 
           <Header
-            email={userData .email}
+            email={userData.email}
             onLogout={callBackLogout}
           />
 
