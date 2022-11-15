@@ -33,7 +33,14 @@ function App() {
 
 
 
-  const tokenCheck = useCallback(async (data) => {
+  const callBackAuthenticate = useCallback((data) => {
+    data.token&&localStorage.setItem('jwt', data.token);
+    setLoggedIn(true);
+
+
+  }, [])
+
+  const tokenCheck = useCallback(async () => {
     try {
       const jwt = localStorage.getItem('jwt');
       if (!jwt) {
@@ -60,12 +67,12 @@ function App() {
   const callBackLogin = useCallback(async (email, password) => {
     try {
       const data = await auth.authorize(email, password);
-      data.token && localStorage.setItem('jwt', data.token);
+      
       if (!data) {
         throw new Error('Неверный майл или пароль')
       }
 
-      tokenCheck(data)
+      callBackAuthenticate(data)
       const userData = { email, password }
       console.log(userData)
       return data;
@@ -78,7 +85,7 @@ function App() {
 
     }
 
-  }, []);
+  }, [callBackAuthenticate]);
 
   const callBackRegistr = useCallback(async (email, password) => {
     try {
@@ -87,7 +94,7 @@ function App() {
       setRegistr(true)
       setTimeout(() => {
         callBackLogin(email, password)
-      }, 100)
+      }, 300)
 
       return data;
     } catch {
@@ -110,7 +117,6 @@ function App() {
 
   //запрос на получение карточек
   useEffect(() => {
-
     api.getInitialCards(cards)
       .then((data) => {
         setCards(data);
