@@ -34,7 +34,7 @@ function App() {
 
 
   const callBackAuthenticate = useCallback((data) => {
-    data.token&&localStorage.setItem('jwt', data.token);
+    data.token && localStorage.setItem('jwt', data.token);
     setLoggedIn(true);
 
 
@@ -67,7 +67,7 @@ function App() {
   const callBackLogin = useCallback(async (email, password) => {
     try {
       const data = await auth.authorize(email, password);
-      
+
       if (!data) {
         throw new Error('Неверный майл или пароль')
       }
@@ -98,7 +98,7 @@ function App() {
 
       return data;
     } catch {
-
+      setRegistr(false);
     } finally { setIsInfoTooltipOpen(true) };
   }, [])
 
