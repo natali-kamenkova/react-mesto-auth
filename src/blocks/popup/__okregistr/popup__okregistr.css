@@ -14,5 +14,7 @@
   .popup__okregistr{
     width: 282px;
     padding: 25px 22px;
+    background-size: 120px 120px;
+  
   }
 }
