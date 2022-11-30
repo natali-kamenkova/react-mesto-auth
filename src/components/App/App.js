@@ -30,7 +30,7 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [userData, setUserData] = useState({});
   const [registr, setRegistr] = React.useState(false);
-
+  const jwt = localStorage.getItem('jwt');
 
 
   const callBackAuthenticate = useCallback((data) => {
@@ -117,14 +117,16 @@ function App() {
 
   //запрос на получение карточек
   useEffect(() => {
+   if (jwt){
     api.getInitialCards(cards)
-      .then((data) => {
-        setCards(data);
-      })
-      .catch(function (err) {
-        console.log('Ошибка', err)
-      })
-  }, [])
+    .then((data) => {
+      setCards(data);
+    })
+    .catch(function (err) {
+      console.log('Ошибка', err)
+    })
+   }                              
+  }, [loggedIn])
   //обработчик кнопки лайк в карточке
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
@@ -156,17 +158,19 @@ function App() {
 
   //запрос на получение данных пользователя
   useEffect(() => {
+   if(jwt){
     api.getUserInfo(currentUser)
-      .then((data) => {
-        setCurrentUser(data)
+    .then((data) => {
+      setCurrentUser(data)
 
 
-      })
-      .catch(function (err) {
-        console.log('Ошибка', err)
-      })
-  }, [])
-  // console.log(currentUser)
+    })
+    .catch(function (err) {
+      console.log('Ошибка', err)
+    })
+   }
+  }, [loggedIn])
+  console.log(currentUser)
 
 
   const handleCardClick = (card) => setSelectedCard(card)
@@ -227,6 +231,7 @@ function App() {
       .catch(function (err) {
         console.log('Ошибка', err)
       })
+      
   }
 
   //обработчик добавления карточки
@@ -282,11 +287,11 @@ function App() {
               onCardLike={handleCardLike}
               onCardDelete={handleCardDelete}
             />
-            <Route>
+           
+          </Switch>
+          <Route>
               {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
             </Route>
-          </Switch>
-
           <Footer />
 
 

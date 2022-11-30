@@ -9,3 +9,10 @@
   margin-bottom: 40px;
   transform: translate(100%);
 }
+
+@media screen and (max-width: 530px) {
+  .popup__okregistr{
+    width: 282px;
+    padding: 25px 22px;
+  }
+}
