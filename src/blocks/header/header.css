@@ -20,5 +20,7 @@
     max-width: 320px;
     min-height: 55px;
     margin-bottom: 42px;
+    flex-direction: column-reverse;
+    
   }
 }

@@ -1,5 +1,5 @@
 .popup__notregistr{
-  background: url(../../../images/Unionnot.svg);
+  background: url(../../../images/Unionnot.svg) no-repeat;
  border: none;
   width: 120px;
   height: 120px;
@@ -9,4 +9,12 @@
   margin-bottom: 40px;
   transform: translate(100%);
  
+}
+
+@media screen and (max-width: 530px) {
+  .popup__notregistr {
+    width: 282px;
+    padding: 25px 22px;
+    transform: translate(23%);
+  }
 }

@@ -8,3 +8,11 @@
   color: #FFFFFF;
   margin-bottom: 50px;
 }
+
+@media screen and (max-width: 530px) {
+  .login__title{
+    width: 260px;
+    text-align: center;
+    margin: 0 auto 50px;
+  }
+}

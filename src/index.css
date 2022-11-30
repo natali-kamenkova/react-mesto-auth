@@ -77,3 +77,5 @@ code {
 @import url(./blocks/popup/__text/popup__text.css);
 @import url(./blocks/popup/__notregistr/popup__notregistr.css);
 @import url(./blocks/popup/__okregistr/popup__okregistr.css);
+@import url(./blocks/Login/__form/login__form.css);
+@import url(./blocks/header/__links/header__links.css);

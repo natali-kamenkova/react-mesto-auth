@@ -15,3 +15,11 @@
 opacity: 0.6;
 cursor: pointer;
 }
+
+@media screen and (max-width: 530px) {
+  .header__enter{
+    width: 56px;
+    height: 22px;
+  margin-left: 100px;
+  }
+}

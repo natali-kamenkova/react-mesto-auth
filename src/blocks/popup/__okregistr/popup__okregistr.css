@@ -1,6 +1,6 @@
-.popup__okregistr{
-  background: url(../../../images/okrRegistr.svg);
- border: none;
+.popup__okregistr {
+  background: url(../../../images/okrRegistr.svg) no-repeat;
+  border: none;
   width: 120px;
   height: 120px;
   border-radius: 50;
@@ -11,10 +11,9 @@
 }
 
 @media screen and (max-width: 530px) {
-  .popup__okregistr{
+  .popup__okregistr {
     width: 282px;
     padding: 25px 22px;
-    
-  
+    transform: translate(23%);
   }
 }
