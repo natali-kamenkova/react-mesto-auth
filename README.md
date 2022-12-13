@@ -5,3 +5,6 @@
 Все запросы на авторизацию, регистрацию и проверку токена должны работать через сервис `https://auth.nomoreparties.co`. Остальные запросы, не относящиеся к этой проектной работе могут быть к бэкенду из предыдущих спринтов.
 
 Успехов!
+
+The project is written using React. Implemented user authorization and registration, updating user data, adding and deleting cards,
+likes and dislikes, etc.
