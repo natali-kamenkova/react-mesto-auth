@@ -1,6 +1,6 @@
 //import { config } from "../utils/utils.js"
 export const config = {
-  url: 'http://natali.nomoredomains.monster',
+  url: 'http://api.natali.nomoredomains.monster',
   headers: {
     authorization: 'c14fd4d2-b83b-4faf-994c-ea33775685d1',
     "Content-Type": "application/json"
