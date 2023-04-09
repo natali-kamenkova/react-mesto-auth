@@ -254,7 +254,7 @@ function App() {
         <div className="page">
 
           <Header
-            email={userData.email}
+            email={userData?.email}
             onLogout={callBackLogout}
           />
 
