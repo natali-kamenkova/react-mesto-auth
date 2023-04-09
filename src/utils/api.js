@@ -23,7 +23,10 @@ export class Api {
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
-      headers: this._headers
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('jwt'),
+        'Content-Type': 'application/json',
+      }
     })
       .then(this._checkResponse)
 
@@ -32,7 +35,10 @@ export class Api {
   changeLike(cardId, isLiked) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: isLiked ? 'DELETE' : 'PUT',
-      headers: this._headers
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('jwt'),
+        'Content-Type': 'application/json',
+      }
     })
       .then(this._checkResponse)
 
@@ -42,7 +48,10 @@ export class Api {
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       method: 'GET',
-      headers: this._headers
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('jwt'),
+        'Content-Type': 'application/json',
+      }
     })
       .then(this._checkResponse)
 
@@ -52,7 +61,10 @@ export class Api {
   removeCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this._headers
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('jwt'),
+        'Content-Type': 'application/json',
+      }
     })
       .then(this._checkResponse)
 
@@ -62,7 +74,10 @@ export class Api {
   addCard(data) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('jwt'),
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         name: data.name,
         link: data.link
@@ -76,7 +91,10 @@ export class Api {
   editProfile(data) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('jwt'),
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         name: data.name,
         about: data.about
@@ -89,7 +107,10 @@ export class Api {
   editAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('jwt'),
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         avatar: data.avatar
 
